@@ -1,3 +1,90 @@
+# 🚀 Custom FileBrowser - Instalación rápida
+
+[![Docker Ready](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
+
+**FileBrowser** te permite gestionar archivos de tu servidor a través de una interfaz web simple.  
+Esta versión incluye configuraciones personalizadas y soporte para branding propio.
+
+---
+
+## 📋 Requisitos
+
+- Docker y Docker Compose instalados.
+- Acceso a consola con permisos para ejecutar contenedores.
+---
+
+## 📂 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/Legt14/filebrowser_compose.git
+```
+---
+
+## ⚙️ 2. Configurar el archivo `docker-compose.yml`
+
+Debes **editar** el archivo `docker-compose.yml` para ajustar las rutas de volúmenes a tu estructura de carpetas.
+
+### Variables que debes modificar:
+
+| Variable | Descripción | Ejemplo |
+|:--------|:------------|:--------|
+| `${HOME}` | Directorio base donde FileBrowser gestionará archivos. | `/mnt/data` |
+
+```yaml
+volumes:
+  - /ruta/que/quieres/gestionar:/srv
+  - /ruta/local/al/filebrowser.db:/filebrowser.db
+  - /ruta/local/al/.filebrowser.json:/.filebrowser.json
+  - /ruta/local/al/branding:/branding
+```
+
+🔔 **Importante**:
+- Asegúrate de que los archivos `filebrowser.db`, `.filebrowser.json` y la carpeta `branding/` existen.
+- Las rutas deben ser **absolutas**.
+
+---
+
+## 🚀 3. Levantar el contenedor
+
+Ejecuta los siguientes comandos:
+
+```bash
+docker-compose up -d
+```
+
+Esto descargará la imagen oficial de FileBrowser, configurará el entorno y levantará tu instancia personalizada.
+
+---
+
+## 🌐 4. Acceder a FileBrowser
+
+Abre tu navegador y visita:
+
+- **Localmente:** [http://localhost:8195](http://localhost:8195)
+---
+
+## 🛠️ Opciones avanzadas
+
+- **Cambiar el puerto:**
+  
+  Modifica en `docker-compose.yml`:
+
+  ```yaml
+  ports:
+    - 8195:80
+  ```
+
+  Cambia `8195` por cualquier puerto disponible en tu servidor.
+
+---
+
+## 📢 Notas finales
+
+- El servicio está configurado para **reiniciarse automáticamente** (`restart: always`).
+- FileBrowser iniciará automáticamente cada vez que el servidor se reinicie.
+
+---
+
 # Filebrowser API
 
 ## Login
