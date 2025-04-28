@@ -11,4 +11,4 @@ services:
       - PUID=$(id -u)
       - PGID=$(id -g)
     ports:
-      - 8095:80 #Change the port if needed
+      - 8195:80 #Change the port if needed
